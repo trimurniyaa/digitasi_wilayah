@@ -1,0 +1,149 @@
+<html>
+    <head>
+        <title>Belajar WEBGIS</title>
+        <!-- LEAFLET CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+        <style>
+            #map{
+                width: 100%;
+                height: 100vh;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+    </body>
+</html>
+<!-- LEAFLET JAVASCRIPT -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+    //LOKASI KAJIAN 
+    var map = L.map('map').setView([-5.367016, 105.317890], 15);
+    //BASEMAP OPENSTREETMAP
+    var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+     });
+     osm.addTo(map);
+     //BASEMAP ESRI
+    var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    });
+    Esri_WorldImagery.addTo(map);
+    //POSISI GEDUNG A
+    L.marker([-5.357889,105.3141381]).addTo(map);
+    
+    //POSISI GEDUNG B
+    L.marker([-5.3578386,105.3152358]).addTo(map);
+
+    //POSISI GEDUNG C
+    L.marker([-5.3583593,105.3137254]).addTo(map);
+
+    //POSISI GEDUNG D
+    L.marker([-5.3583149,105.3131135]).addTo(map);
+    
+    //POSISI GEDUNG GKU 2
+    L.marker([-5.3599206,105.3093326]).addTo(map);
+    
+    //POSISI GEDUNG Gedung E
+    L.marker([-5.359799, 105.315831]).addTo(map);
+
+    //POSISI GEDUNG Gedung F
+    L.marker([-5.3613746,105.3095341]).addTo(map);
+
+    //POSISI GEDUNG GKU 1
+    L.marker([-5.3613439,105.3098888]).addTo(map);
+        
+    //BUNDARAN YANG SERING SAYA LANGGAR ATURAN SAAT BERLALU LINTAS DI ITERA
+    var bundaran = L.circle([ -5.363156, 105.312634], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 20
+    }).addTo(map);
+    
+    //BUNDARAN INI JUGA SERING SAYA LANGGAR SETELAH SELESAI KULIAH DI GKU 2
+    var bundaran = L.circle([-5.360813, 105.314847], {
+        color: 'green',
+        fillColor: '#ffffff',
+        fillOpacity: 0.5,
+        radius: 35
+    }).addTo(map);
+    <!-- POLIGON BANGUNAN  GEDUNG E -->
+    var polygon = L.polygon([
+        [-5.359799, 105.315831],
+        [-5.359957, 105.315831],
+        [-5.359957, 105.315571],
+        [-5.360474, 105.315571],
+        [-5.360474, 105.315401],
+        [-5.359635, 105.315401],
+        [-5.359635, 105.315571],
+        [-5.359799, 105.315571]
+    ]).addTo(map);
+
+    //MENAMPILKAN NAMA GEDUNG Gedung A
+    var GedungA = L.marker([-5.357889,105.3102918]);
+    var namagedunga = GedungA.bindPopup("Gedung A").openPopup()
+    namagedunga.addTo(map);
+
+    //MENAMPILKAN NAMA GEDUNG Gedung B
+    var GedungB = L.marker([-5.3578386,105.3152358]);
+    var namagedungb = GedungB.bindPopup("Gedung B").openPopup()
+    namagedungb.addTo(map);
+
+    //MENAMPILKAN NAMA GEDUNG Gedung C
+    var GedungC = L.marker([-5.3583593,105.3137254]);
+    var namagedungc = GedungC.bindPopup("Gedung C").openPopup()
+    namagedungc.addTo(map);
+
+    //MENAMPILKAN NAMA GEDUNG Gedung D
+    var GedungD= L.marker([-5.3583149,105.3131135]);
+    var namagedungd = GedungD.bindPopup("Gedung D").openPopup()
+    namagedungd.addTo(map);
+    
+    //MENAMPILKAN NAMA GEDUNG GKU 2
+    var GKU2 = L.marker([-5.3599206,105.3093326]);
+    var namagku2 = GKU2.bindPopup("Gedung GKU 2").openPopup()
+    namagku2.addTo(map);
+    
+    //MENAMPILKAN NAMA GEDUNG Gedung E
+    var GedungE = L.marker([-5.359799, 105.315831]);
+    var namagedunge = GedungE.bindPopup("Gedung E").openPopup()
+    namagedunge.addTo(map);
+
+    //MENAMPILKAN NAMA GEDUNG Gedung F
+    var GedungF = L.marker([-5.3613746,105.3095341]);
+    var namagedungf = GedungF.bindPopup("Gedung F").openPopup()
+    namagedungf.addTo(map);
+
+    //MENAMPILKAN NAMA GEDUNG GKU 1
+    var GKU1 = L.marker([-5.3613439,105.3098888]);
+    var namagku1 = GKU1.bindPopup("Gedung GKU 1").openPopup()
+    namagku1.addTo(map);
+    
+    var baseMaps = {
+        "OSM":osm,
+        "ESRI":Esri_WorldImagery,
+    };
+    var overlayMaps = {
+        "Gedung A": GedungA,
+        "Gedung B" : GedungB,
+        "Gedung C" : GedungC,
+        "Gedung D" : GedungD,
+        "GKU 2" : GKU2,
+        "Gedung E": GedungE,
+        "Gedung F": GedungF,
+        "GKU 1" : GKU1,
+        //"Bundaran GKU": bundaranGKU,
+        //"Gedung E": polygon,
+    };
+    map.removeLayer(GedungA)
+    map.removeLayer(GedungB)
+    map.removeLayer(GedungC)
+    map.removeLayer(GedungD)
+    map.removeLayer(GKU2)
+    map.removeLayer(GedungE)
+    map.removeLayer(GedungF)
+    map.removeLayer(GKU1)
+    //map.removeLayer(polygon)
+    L.control.layers(baseMaps,overlayMaps, {collapsed : false}).addTo(map);
+</script>
